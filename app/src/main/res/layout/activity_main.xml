@@ -8,7 +8,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <CalendarView
             android:id="@+id/calendarView"
@@ -25,11 +27,37 @@
             android:layout_below="@+id/calendarView"
             android:layout_centerHorizontal="true"
             android:text="Ereignis hinzufügen"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="335dp" />
+
+        <Button
+            android:id="@+id/button"
+            style="@android:style/Widget.Material.Light.Button.Borderless.Small"
+            android:layout_width="302dp"
+            android:layout_height="37dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="101dp"
+            android:text="Gemeinsames Ereignis hinzufügen"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnGoToMainEvent"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="302dp"
+            android:layout_height="37dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="57dp"
+            android:text="Zur Ereignisansicht"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
