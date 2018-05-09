@@ -15,8 +15,7 @@ public class AddEventActivity extends AppCompatActivity{
 
     private CalendarView mAddEventActivity;
 
-    //Github braucht Änderungen
-    private String platzhalter ="OMFG";
+    //Layout verknüpfen
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
