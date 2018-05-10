@@ -34,13 +34,13 @@
             tools:layout_editor_absoluteY="335dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnAddSharedEvent"
             style="@android:style/Widget.Material.Light.Button.Borderless.Small"
             android:layout_width="302dp"
             android:layout_height="37dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="101dp"
+            android:layout_marginBottom="105dp"
             android:text="Gemeinsames Ereignis hinzufügen"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp" />
@@ -55,8 +55,7 @@
             android:layout_marginBottom="57dp"
             android:text="Zur Ereignisansicht"
             android:textColor="@android:color/darker_gray"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
     </RelativeLayout>
 
