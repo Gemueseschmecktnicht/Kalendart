@@ -13,17 +13,23 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnAddEvent;
 
+    private Button btnAddSharedEvent;
+
+    private Button btnVariable;
+
     private Button btnGoToMainEvent;
 
-    //Layout verknüpfen
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        btnAddEvent = (Button) findViewById(R.id.btnAddEvent); //Button addEvent hinzufügen
+        setContentView(R.layout.activity_main); //Layout verknüpfen
+        btnAddEvent = (Button) findViewById(R.id.btnAddEvent);
         btnGoToMainEvent = (Button) findViewById(R.id.btnGoToMainEvent);
+        btnAddSharedEvent = (Button) findViewById(R.id.btnAddSharedEvent);
+        btnVariable = (Button) findViewById(R.id.btnVariable);
 
-        //Beim Buttonklick AddEventActivity (addevent_layout.xml) öffnen
+        //Ereignis hinzufügen geklickt
         btnAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Beim Buttonklick MainEventActivity (activity_main_event.xml) öffnen
+        //Zur Ereignisansicht geklickt
         btnGoToMainEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,5 +46,30 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //Gemeinsames Ereignis Hinzufügen geklickt
+        btnAddSharedEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddSharedEventActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //Zur Variablenanzeige geklickt
+        btnVariable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, VariableDisplay.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
+/*ALLE BENUTZTEN QUELLEN
+https://developer.android.com/reference/android/widget/Button (10.05.2018)
+http://codezentrale.bplaced.net/dcz/?p=3778 (10.05.2018)
+https://stackoverflow.com/questions/4038479/android-go-back-to-previous-activity (10.05.2018)
+https://www.youtube.com/watch?v=NdtE_1u0cq4 (10.05.2018)
+ */
