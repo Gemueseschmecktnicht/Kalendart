@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".AddEventActivity"></activity>
         <activity android:name=".MainEventActivity"></activity>
+        <activity android:name=".AddSharedEventActivity"></activity>
+        <activity android:name=".VariableDisplay"></activity>
     </application>
 
 </manifest>

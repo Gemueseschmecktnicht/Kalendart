@@ -11,25 +11,22 @@ public class MainEventActivity extends AppCompatActivity {
 
     private static final String TAG = "MainEventActivity";
 
-
-
     private Button btnGoToMain;
 
-    //Layout verknüpfen
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_event);
+        setContentView(R.layout.activity_main_event); //Layout verknüpfen
 
-        btnGoToMain = (Button) findViewById(R.id.btnGoToMainEvent);
+        btnGoToMain = (Button) findViewById(R.id.btnGoToMain);
 
-      /*  //Beim Buttonklick MainActivity (activity_main_event.xml) öffnen
+        //Zur Kalenderansicht geklickt
         btnGoToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainEventActivity.this, MainActivity.class);
-                startActivity(intent);
+                MainEventActivity.super.onBackPressed(); //Zurücktaste
             }
-        });*/ //FUNKTIONIERT IM MOMENT LEIDER NICHT, KANN DAS BITTE JEMAND BEHEBEN?! DANKE :D
+        });
     }
 }
