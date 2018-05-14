@@ -46,11 +46,13 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         btnDiscard = (Button) findViewById(R.id.btnDiscard);
         Button txtUhrzeit = (Button) findViewById(R.id.txtUhrzeit);
         Button txtDatum = (Button) findViewById(R.id.txtDatum);
+        final TextView txtName = (TextView) findViewById(R.id.txtName);
 
         //Ereignis hinzufügen geklickt
         btnFinalAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                name = (String) txtName.getText();
                 Toast msg = Toast.makeText(getBaseContext(), "Variablen Gespeichert", Toast.LENGTH_LONG);
                 msg.show();
                 AddEventActivity.super.onBackPressed();
