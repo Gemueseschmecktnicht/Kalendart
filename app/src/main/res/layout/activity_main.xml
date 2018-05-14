@@ -16,6 +16,7 @@
             android:id="@+id/calendarView"
             android:layout_width="384dp"
             android:layout_height="324dp"
+            android:layout_above="@+id/btnAddEvent"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
@@ -24,8 +25,9 @@
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="302dp"
             android:layout_height="37dp"
-            android:layout_below="@+id/calendarView"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="149dp"
             android:text="Ereignis hinzufügen"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
@@ -64,6 +66,14 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:text="zur Variablenanzeige" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#69c3ff"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
 
     </RelativeLayout>
 

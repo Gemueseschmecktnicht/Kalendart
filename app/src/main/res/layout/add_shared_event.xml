@@ -29,27 +29,27 @@
             android:inputType="textPersonName"
             android:text="Ereignisname" />
 
-        <EditText
+        <Button
             android:id="@+id/txtDatum"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="165dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/textView3"
             android:layout_marginTop="95dp"
             android:ems="10"
-            android:inputType="date"
-            android:text="Datum" />
+            android:inputType="none" />
 
-        <EditText
-            android:id="@+id/editText3"
+        <Button
+            android:id="@+id/txtUhrzeit"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="165dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignTop="@+id/txtDatum"
             android:layout_marginEnd="14dp"
             android:ems="10"
-            android:inputType="time"
-            android:text="Uhrzeit" />
+            android:inputType="none" />
 
         <EditText
             android:id="@+id/editText4"
@@ -79,7 +79,7 @@
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:layout_width="165dp"
             android:layout_height="83dp"
-            android:layout_alignEnd="@+id/editText3"
+            android:layout_alignEnd="@+id/txtUhrzeit"
             android:layout_alignTop="@+id/btnDiscard"
             android:text="Ereignis Teilen mit..."
             android:textColor="@color/colorPrimary" />
@@ -93,4 +93,24 @@
             android:layout_alignStart="@+id/textView3"
             android:layout_marginTop="211dp"
             android:text="+" />
-    </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txtDatumShow"
+            android:layout_width="133dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/txtDatum"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="27dp"
+            android:text="Datum"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtUhrzeitShow"
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/txtDatum"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="29dp"
+            android:text="Uhrzeit"
+            android:textSize="18sp" />
+</RelativeLayout>

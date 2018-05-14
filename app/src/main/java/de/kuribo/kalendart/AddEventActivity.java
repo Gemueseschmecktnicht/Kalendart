@@ -1,32 +1,26 @@
 package de.kuribo.kalendart;
 
-import android.app.Activity;
-import android.app.Dialog;
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.Calendar;
 
-public class AddEventActivity extends AppCompatActivity {
+public class AddEventActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
 
     private static final String TAG = "AddEventActivity"; //TAG boiis
 
     private Button btnFinalAddEvent;
 
     private Button btnDiscard;
-
-    private EditText txtDatum;
 
     int hour;
 
@@ -42,13 +36,13 @@ public class AddEventActivity extends AppCompatActivity {
         setContentView(R.layout.addevent_layout); //Layout verknüpfen
         btnFinalAddEvent = (Button) findViewById(R.id.btnFinalAddEvent);
         btnDiscard = (Button) findViewById(R.id.btnDiscard);
-        txtDatum = (EditText) findViewById(R.id.txtDatum);
+        Button txtUhrzeit = (Button) findViewById(R.id.txtUhrzeit);
+        Button txtDatum = (Button) findViewById(R.id.txtDatum);
 
         //Ereignis hinzufügen geklickt
         btnFinalAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Toast msg = Toast.makeText(getBaseContext(), "Variablen Gespeichert", Toast.LENGTH_LONG);
                 msg.show();
                 AddEventActivity.super.onBackPressed();
@@ -64,28 +58,55 @@ public class AddEventActivity extends AppCompatActivity {
             }
         });
 
-        //Datum geklickt
-       /* txtDatum.setOnClickListener(new View.OnClickListener() {
+        //Uhrzeit geklickt --> TIMEPICKER
+        txtUhrzeit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                calendar = Calendar.getInstance();
-                hour = calendar.get(Calendar.HOUR_OF_DAY);
-                minute = calendar.get(Calendar.MINUTE);
-
-
-                timePickerDialog = new TimePickerDialog(AddEventActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timepicker, int hours, int minutes) {
-                        txtDatum.setText(hour + ":" + minute);
-                    }
-                }, hour, minute);
-
-                timePickerDialog.show();
+            public void onClick(View v) {
+                android.support.v4.app.DialogFragment timePicker = new TimePickerFragment();
+                timePicker.show(getSupportFragmentManager(), "time picker");
 
             }
-        });*/
+        });
 
+        //Datum geklickt --> DATEPICKER
+        txtDatum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                android.support.v4.app.DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+            }
+        });
 
+    }
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int currentHour, int currentMinute) {
+        TextView txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow);
+        if(currentHour<10) {        //Für 02:02 statt 2:2 sorgen
+            if(currentMinute<10) {
+                txtUhrzeitShow.setText("0" + currentHour + ":0" + currentMinute);
+            } else {
+                txtUhrzeitShow.setText("0" + currentHour + ":" + currentMinute);
+            }
+        } else {
+            if(currentMinute<10) {
+                txtUhrzeitShow.setText(currentHour + ":" + currentMinute);
+            } else {
+                txtUhrzeitShow.setText(currentHour + ":0" + currentMinute);
+            }
+
+        }
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int currentYear, int currentMonth, int currentDay) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, currentYear);
+        c.set(Calendar.MONTH, currentMonth);
+        c.set(Calendar.DAY_OF_MONTH, currentDay);
+        String currentDateString = java.text.DateFormat.getDateInstance().format(c.getTime()); //Datumanzeige an Sprache anpassen
+
+        TextView txtDatumShow = (TextView) findViewById(R.id.txtDatumShow);
+        txtDatumShow.setText(currentDateString);
     }
 }
