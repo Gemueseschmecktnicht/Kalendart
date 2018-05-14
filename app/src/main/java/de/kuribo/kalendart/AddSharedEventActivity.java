@@ -89,9 +89,9 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
             }
         } else {
             if(currentMinute<10) {
-                txtUhrzeitShow.setText(currentHour + ":" + currentMinute);
-            } else {
                 txtUhrzeitShow.setText(currentHour + ":0" + currentMinute);
+            } else {
+                txtUhrzeitShow.setText(currentHour + ":" + currentMinute);
             }
 
         }

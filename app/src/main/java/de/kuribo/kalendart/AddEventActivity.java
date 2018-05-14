@@ -20,6 +20,14 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
 
     private Button btnFinalAddEvent;
 
+    public String datum = "Nicht definiert";
+
+    public String uhrzeit = "Nicht definiert";
+
+    public String name = "Nicht definiert";
+
+    public String beschreibung = "Nicht definiert";
+
     private Button btnDiscard;
 
     int hour;
@@ -90,9 +98,9 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
             }
         } else {
             if(currentMinute<10) {
-                txtUhrzeitShow.setText(currentHour + ":" + currentMinute);
-            } else {
                 txtUhrzeitShow.setText(currentHour + ":0" + currentMinute);
+            } else {
+                txtUhrzeitShow.setText(currentHour + ":" + currentMinute);
             }
 
         }
@@ -108,5 +116,38 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
 
         TextView txtDatumShow = (TextView) findViewById(R.id.txtDatumShow);
         txtDatumShow.setText(currentDateString);
+    }
+
+    //GETTER + SETTER
+    public String getName(){
+        return this.name;
+    }
+
+    public String getDatum(){
+        return this.datum;
+    }
+
+    public String getUhrzeit(){
+        return this.uhrzeit;
+    }
+
+    public String getBeschreibung(){
+        return this.beschreibung;
+    }
+
+    public void setName(String pName){
+        this.name = pName;
+    }
+
+    public void setDatum(String pDatum){
+        this.datum = pDatum;
+    }
+
+    public void setUhrzeit(String pUhrzeit){
+        this.uhrzeit = pUhrzeit;
+    }
+
+    public void setBeschreibung(String pBeschreibung){
+        this.beschreibung = pBeschreibung;
     }
 }
