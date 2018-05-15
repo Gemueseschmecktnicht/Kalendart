@@ -18,6 +18,8 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
 
     private static final String TAG = "AddEventActivity"; //TAG boiis
 
+    private VariableDisplay vd = new VariableDisplay();
+
     private Button btnFinalAddEvent;
 
     public String datum = "Nicht definiert";

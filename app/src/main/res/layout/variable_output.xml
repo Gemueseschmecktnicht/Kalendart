@@ -60,6 +60,15 @@
             android:layout_marginStart="54dp"
             android:layout_marginTop="159dp"
             android:text="TextView" />
+
+        <Button
+            android:id="@+id/btnAktualisieren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="223dp"
+            android:text="Aktualisieren" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
