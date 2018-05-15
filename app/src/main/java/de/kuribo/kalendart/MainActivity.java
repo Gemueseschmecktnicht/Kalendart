@@ -72,4 +72,6 @@ https://developer.android.com/reference/android/widget/Button (10.05.2018)
 http://codezentrale.bplaced.net/dcz/?p=3778 (10.05.2018)
 https://stackoverflow.com/questions/4038479/android-go-back-to-previous-activity (10.05.2018)
 https://www.youtube.com/watch?v=NdtE_1u0cq4 (10.05.2018)
+https://stackoverflow.com/questions/3928864/converting-textview-to-string-kind-of-android (15.05.2018)
+https://individuapp.com/softwareentwicklung/android-kurs/textview-und-edittext/ (15.05.2018)
  */

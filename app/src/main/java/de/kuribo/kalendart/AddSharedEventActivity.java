@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -30,7 +29,7 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
         setContentView(R.layout.add_shared_event); //Layout verknüpfen
         btnDiscard = (Button) findViewById(R.id.btnDiscard);
         btnFinalAddSharedEvent = (Button) findViewById(R.id.btnFinalAddSharedEvent);
-        Button txtUhrzeit = (Button) findViewById(R.id.txtUhrzeit);
+        Button txtUhrzeit = (Button) findViewById(R.id.txtZeit);
         Button txtDatum = (Button) findViewById(R.id.txtDatum);
 
         //Ereignis Verwerfen geklickt

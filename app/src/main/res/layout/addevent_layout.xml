@@ -47,7 +47,7 @@
             android:inputType="none" />
 
         <Button
-            android:id="@+id/txtUhrzeit"
+            android:id="@+id/txtZeit"
             style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="165dp"
             android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:layout_width="165dp"
             android:layout_height="83dp"
-            android:layout_alignEnd="@+id/txtUhrzeit"
+            android:layout_alignEnd="@+id/txtZeit"
             android:layout_alignTop="@+id/btnDiscard"
             android:text="Ereignis Hinzufügen"
             android:textColor="@color/colorPrimary" />

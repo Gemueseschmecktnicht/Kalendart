@@ -18,8 +18,6 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
 
     private static final String TAG = "AddEventActivity"; //TAG boiis
 
-    private VariableDisplay vd = new VariableDisplay();
-
     private Button btnFinalAddEvent;
 
     public String datum = "Nicht definiert";
@@ -46,7 +44,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         setContentView(R.layout.addevent_layout); //Layout verknüpfen
         btnFinalAddEvent = (Button) findViewById(R.id.btnFinalAddEvent);
         btnDiscard = (Button) findViewById(R.id.btnDiscard);
-        Button txtUhrzeit = (Button) findViewById(R.id.txtUhrzeit);
+        Button txtUhrzeit = (Button) findViewById(R.id.txtZeit);
         Button txtDatum = (Button) findViewById(R.id.txtDatum);
         final TextView txtName = (TextView) findViewById(R.id.txtName);
 
@@ -54,7 +52,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         btnFinalAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                name = (String) txtName.getText();
+                name = txtName.getText().toString();
                 Toast msg = Toast.makeText(getBaseContext(), "Variablen Gespeichert", Toast.LENGTH_LONG);
                 msg.show();
                 AddEventActivity.super.onBackPressed();
