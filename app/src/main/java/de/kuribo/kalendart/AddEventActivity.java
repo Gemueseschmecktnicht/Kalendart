@@ -2,7 +2,6 @@ package de.kuribo.kalendart;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -45,7 +44,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
     TimePickerDialog timePickerDialog;
 
     @Override
-    protected void onCreate(@Nullable final Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addevent_layout); //Layout verknüpfen
         btnFinalAddEvent = (Button) findViewById(R.id.btnFinalAddEvent);
@@ -57,17 +56,15 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         final TextView txtName = (TextView) findViewById(R.id.txtName);
         final EditText etxtName = (EditText) findViewById(R.id.txtName);
 
-
         //Ereignis hinzufügen geklickt
         btnFinalAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                name = etxtName.getText().toString();
 
-                if (name.length() == 0) {
+                if (etxtName.length() == 0) {
                     IsNull("Namens");
                 } else {
-                    if(txtDatumShow.length() == 5){
+                    if (txtDatumShow.length() == 5){
                         IsNull("Datums");
                     } else {
                         if (txtUhrzeitShow.length() == 7) {
