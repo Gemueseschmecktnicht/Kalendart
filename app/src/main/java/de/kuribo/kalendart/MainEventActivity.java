@@ -7,11 +7,14 @@ import android.widget.Button;
 
 public class MainEventActivity extends AppCompatActivity {
 
+
+    //ATTRIBUTE
     private static final String TAG = "MainEventActivity";
 
     private Button btnGoToMain;
 
 
+    //CODE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

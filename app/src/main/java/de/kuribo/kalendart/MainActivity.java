@@ -10,16 +10,17 @@ import android.widget.CalendarView;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    //ATTRIBUTE
     private static final String TAG = "MainActivity"; //TAG boiis
 
     private Button btnAddEvent;
-
     private Button btnAddSharedEvent;
-
     private Button btnVariable;
-
     private Button btnGoToMainEvent;
 
+
+    //CODE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -14,53 +14,54 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Calendar;
-
 import static android.app.PendingIntent.getActivity;
 
 public class AddEventActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
 
-    private static final String TAG = "AddEventActivity"; //TAG boiis
 
-    private static final String Event = "Termin.txt";
+    //ATTRIBUTE
+    private static final String TAG = "AddEventActivity"; //TAG
 
+    private static final String Eventname = "Termin.txt";
     private Button btnFinalAddEvent;
-
     public String datum = "Nicht definiert";
-
     public String uhrzeit = "Nicht definiert";
-
     public String name = "Nicht definiert";
-
     public String beschreibung = "Nicht definiert";
-
+    TextView txtName;
+    TextView txtUhrzeitShow;
+    TextView txtDatumShow;
+    EditText etxtName;
+    Button txtDatum;
+    Button txtUhrzeit;
     private Button btnDiscard;
-
     int hour;
-
     Calendar calendar;
-
     int minute;
-
     TimePickerDialog timePickerDialog;
 
+
+    //CODE
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addevent_layout); //Layout verknüpfen
         btnFinalAddEvent = (Button) findViewById(R.id.btnFinalAddEvent);
         btnDiscard = (Button) findViewById(R.id.btnDiscard);
-        final Button txtUhrzeit = (Button) findViewById(R.id.txtZeit);
-        final TextView txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow);
-        final Button txtDatum = (Button) findViewById(R.id.txtDatum);
-        final TextView txtDatumShow = (TextView) findViewById(R.id.txtDatumShow);
-        final TextView txtName = (TextView) findViewById(R.id.txtName);
-        final EditText etxtName = (EditText) findViewById(R.id.txtName);
+        txtUhrzeit = (Button) findViewById(R.id.txtZeit);
+        txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow);
+        txtDatum = (Button) findViewById(R.id.txtDatum);
+        txtDatumShow = (TextView) findViewById(R.id.txtDatumShow);
+        txtName = (TextView) findViewById(R.id.txtName);
+        etxtName = (EditText) findViewById(R.id.txtName);
 
         //Ereignis hinzufügen geklickt
         btnFinalAddEvent.setOnClickListener(new View.OnClickListener() {
@@ -76,28 +77,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
                         if (txtUhrzeitShow.length() == 7) {
                             IsNull("Uhrzeit");
                         } else {
-                            String text0 = txtName.getText().toString();
-                            FileOutputStream fos = null;
-                            try {
-                                fos = openFileOutput(Event, MODE_PRIVATE);
-                                fos.write(text0.getBytes());
-
-                                Toast msg = Toast.makeText(getBaseContext(), "File " +getFilesDir() +"/" +Event +" angelegt", Toast.LENGTH_LONG);
-                                msg.show();
-                            } catch (FileNotFoundException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } finally {
-                                if(fos != null) {
-                                    try {
-                                        fos.close();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }
-
+                            save();
                             AddEventActivity.super.onBackPressed();
                         }
                     }
@@ -179,6 +159,64 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+
+    //Methode zum Speichern
+    public void save(){
+        String text0 = txtName.getText().toString();
+        FileOutputStream fos = null;
+        try {
+            fos = openFileOutput(Eventname, MODE_PRIVATE);
+            fos.write(text0.getBytes());
+
+            Toast msg = Toast.makeText(getBaseContext(), "File " +getFilesDir() +"/" +Eventname +" angelegt", Toast.LENGTH_LONG);
+            msg.show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    //Methode zum Laden
+    public void load(){
+        FileInputStream fis = null;
+
+        try {
+            fis = openFileInput(Eventname);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
+
+            while((text = br.readLine()) != null){
+                sb.append(text).append("\n");
+            }
+
+            txtName.setText(sb.toString());
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fis != null){
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     //GETTER + SETTER
     public String getName(){
         return this.name;

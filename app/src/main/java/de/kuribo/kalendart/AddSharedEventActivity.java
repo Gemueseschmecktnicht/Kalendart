@@ -19,25 +19,33 @@ import java.util.Calendar;
 
 public class AddSharedEventActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
+
+    //ATTRIBUTE
     private static final String TAG = "AddSharedEventActivity"; //TAG boiis
 
     private Button btnDiscard;
-
     private Button btnFinalAddSharedEvent;
+    Button txtUhrzeit;
+    Button txtDatum;
+    TextView txtUhrzeitShow;
+    TextView txtDatumShow;
+    TextView txtName;
+    EditText etxtName;
 
 
+    //CODE
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_shared_event); //Layout verknüpfen
         btnDiscard = (Button) findViewById(R.id.btnDiscard);
         btnFinalAddSharedEvent = (Button) findViewById(R.id.btnFinalAddSharedEvent);
-        final Button txtUhrzeit = (Button) findViewById(R.id.txtZeit);
-        final TextView txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow);
-        final Button txtDatum = (Button) findViewById(R.id.txtDatum);
-        final TextView txtDatumShow = (TextView) findViewById(R.id.txtDatumShow);
-        final TextView txtName = (TextView) findViewById(R.id.txtName);
-        final EditText etxtName = (EditText) findViewById(R.id.txtName);
+        txtUhrzeit = (Button) findViewById(R.id.txtZeit);
+        txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow);
+        txtDatum = (Button) findViewById(R.id.txtDatum);
+        txtDatumShow = (TextView) findViewById(R.id.txtDatumShow);
+        txtName = (TextView) findViewById(R.id.txtName);
+        etxtName = (EditText) findViewById(R.id.txtName);
 
         //Ereignis Teilen Mit... geklickt
         btnFinalAddSharedEvent.setOnClickListener(new View.OnClickListener() {
