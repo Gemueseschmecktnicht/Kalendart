@@ -15,6 +15,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 
 import static android.app.PendingIntent.getActivity;
@@ -22,6 +26,8 @@ import static android.app.PendingIntent.getActivity;
 public class AddEventActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
 
     private static final String TAG = "AddEventActivity"; //TAG boiis
+
+    private static final String Event = "Termin.txt";
 
     private Button btnFinalAddEvent;
 
@@ -70,9 +76,28 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
                         if (txtUhrzeitShow.length() == 7) {
                             IsNull("Uhrzeit");
                         } else {
+                            String text0 = txtName.getText().toString();
+                            FileOutputStream fos = null;
+                            try {
+                                fos = openFileOutput(Event, MODE_PRIVATE);
+                                fos.write(text0.getBytes());
 
-                            Toast msg = Toast.makeText(getBaseContext(), "Variablen Gespeichert", Toast.LENGTH_LONG);
-                            msg.show();
+                                Toast msg = Toast.makeText(getBaseContext(), "File " +getFilesDir() +"/" +Event +" angelegt", Toast.LENGTH_LONG);
+                                msg.show();
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            } finally {
+                                if(fos != null) {
+                                    try {
+                                        fos.close();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+
                             AddEventActivity.super.onBackPressed();
                         }
                     }
