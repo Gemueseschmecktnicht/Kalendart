@@ -3,10 +3,11 @@ package de.kuribo.kalendart;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.CalendarView;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,10 +15,12 @@ public class MainActivity extends AppCompatActivity {
     //ATTRIBUTE
     private static final String TAG = "MainActivity"; //TAG boiis
 
-    private Button btnAddEvent;
-    private Button btnAddSharedEvent;
-    private Button btnVariable;
+    private ImageButton btnAddEvent;
+    private ImageButton btnAddSharedEvent;
     private Button btnGoToMainEvent;
+    private ImageButton btnAdd;
+    private boolean visible = false;
+
 
 
     //CODE
@@ -25,10 +28,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //Layout verknüpfen
-        btnAddEvent = (Button) findViewById(R.id.btnAddEvent);
+        btnAddEvent = (ImageButton) findViewById(R.id.btnAddEvent);
         btnGoToMainEvent = (Button) findViewById(R.id.btnGoToMainEvent);
-        btnAddSharedEvent = (Button) findViewById(R.id.btnAddSharedEvent);
-        btnVariable = (Button) findViewById(R.id.btnVariable);
+        btnAddSharedEvent = (ImageButton) findViewById(R.id.btnAddSharedEvent);
+        btnAdd = (ImageButton) findViewById(R.id.btnAdd);
+
 
         //Ereignis hinzufügen geklickt
         btnAddEvent.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +40,30 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddEventActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //+ geklickt
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(visible==false){
+                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.show);
+                    btnAddEvent.setVisibility(View.VISIBLE);
+                    btnAddSharedEvent.setVisibility(View.VISIBLE);
+                    btnAddEvent.startAnimation(animation);
+                    btnAddSharedEvent.startAnimation(animation);
+                    visible = true;
+                } else {
+                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.hide);
+                    btnAddEvent.setVisibility(View.GONE);
+                    btnAddSharedEvent.setVisibility(View.GONE);
+                    btnAddEvent.startAnimation(animation);
+                    btnAddSharedEvent.startAnimation(animation);
+                    visible = false;
+                }
+
+
             }
         });
 
@@ -53,15 +81,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddSharedEventActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //Zur Variablenanzeige geklickt
-        btnVariable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, VariableDisplay.class);
                 startActivity(intent);
             }
         });
