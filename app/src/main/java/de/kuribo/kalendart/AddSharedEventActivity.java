@@ -21,7 +21,7 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
 
 
     //ATTRIBUTE
-    private static final String TAG = "AddSharedEventActivity"; //TAG boiis
+    private static final String TAG = "AddSharedEventActivity"; //TAG
 
     private Button btnDiscard;
     private Button btnFinalAddSharedEvent;
@@ -38,32 +38,32 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_shared_event); //Layout verknüpfen
-        btnDiscard = (Button) findViewById(R.id.btnDiscard);
-        btnFinalAddSharedEvent = (Button) findViewById(R.id.btnFinalAddSharedEvent);
-        txtUhrzeit = (Button) findViewById(R.id.txtZeit);
-        txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow);
-        txtDatum = (Button) findViewById(R.id.txtDatum);
-        txtDatumShow = (TextView) findViewById(R.id.txtDatumShow);
-        txtName = (TextView) findViewById(R.id.txtName);
-        etxtName = (EditText) findViewById(R.id.txtName);
+        btnDiscard = (Button) findViewById(R.id.btnDiscard); //Button mit Variable verknüpfen
+        btnFinalAddSharedEvent = (Button) findViewById(R.id.btnFinalAddSharedEvent); //Button mit Variable verknüpfen
+        txtUhrzeit = (Button) findViewById(R.id.txtZeit); //Button mit Variable verknüpfen
+        txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow); //TextView mit Variable verknüpfen
+        txtDatum = (Button) findViewById(R.id.txtDatum); //Button mit Variable verknüpfen
+        txtDatumShow = (TextView) findViewById(R.id.txtDatumShow); //TextView mit Variable verknüpfen
+        txtName = (TextView) findViewById(R.id.txtName); //TextView mit Variable verknüpfen
+        etxtName = (EditText) findViewById(R.id.txtName); //EditText mit Variable verknüpfen
 
         //Ereignis Teilen Mit... geklickt
         btnFinalAddSharedEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (etxtName.length() == 0) {
-                    IsNull("Namens");
+                if (etxtName.length() == 0) { //Wenn Das Ereignis keinen Namen hat...
+                    IsNull("Namens"); //...Operation IsNull aufrufen
                 } else {
-                    if (txtDatumShow.length() == 5) {
-                        IsNull("Datums");
+                    if (txtDatumShow.length() == 5) { //Wenn Das Ereignis kein Datum hat...
+                        IsNull("Datums"); //...Operation IsNull aufrufen
                     } else {
-                        if (txtUhrzeitShow.length() == 7) {
-                            IsNull("Uhrzeit");
+                        if (txtUhrzeitShow.length() == 7) { //Wenn Das Ereignis keine Uhrzeit hat...
+                            IsNull("Uhrzeit"); //...Operation IsNull aufrufen
                         } else {
                             Intent intent = new Intent(Intent.ACTION_SEND);
                             intent.setType("text/plain");
-                            String shareBody = "http://kalendart.com/event/name=" +txtName +"&datum=" +txtDatum +"&Uhrzeit=" +txtUhrzeit +"versionalpha/";
+                            String shareBody = "http://kalendart.com/event/name=" +txtName +"&datum=" +txtDatum +"&Uhrzeit=" +txtUhrzeit +"versionalpha/"; //Link als String verpacken
                             String shareSub = "Subject";
                             intent.putExtra(Intent.EXTRA_SUBJECT, shareBody);
                             intent.putExtra(Intent.EXTRA_TEXT, shareBody);
@@ -90,8 +90,8 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
         txtUhrzeit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.support.v4.app.DialogFragment timePicker = new TimePickerFragment();
-                timePicker.show(getSupportFragmentManager(), "time picker");
+                android.support.v4.app.DialogFragment timePicker = new TimePickerFragment(); //selbsterklärend
+                timePicker.show(getSupportFragmentManager(), "time picker"); //selbsterklärend
 
             }
         });
@@ -100,8 +100,8 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
         txtDatum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                android.support.v4.app.DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
+                android.support.v4.app.DialogFragment datePicker = new DatePickerFragment(); //selbsterklärend
+                datePicker.show(getSupportFragmentManager(), "date picker"); //selbsterklärend
             }
         });
 
@@ -113,7 +113,7 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
         alertDialogBuilder.setMessage("Das " + pIssue + "feld darf nicht leer sein");
         alertDialogBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(DialogInterface dialogInterface, int i) { // OK Knopf erzeugen
                 dialogInterface.cancel();
             }
         });
@@ -124,7 +124,8 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
     @Override
     public void onTimeSet(TimePicker timePicker, int currentHour, int currentMinute) {
         TextView txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow);
-        if (currentHour < 10) {        //Für 02:02 statt 2:2 sorgen
+        //Für 02:02 statt 2:2 sorgen
+        if (currentHour < 10) {
             if (currentMinute < 10) {
                 txtUhrzeitShow.setText("0" + currentHour + ":0" + currentMinute);
             } else {

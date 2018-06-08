@@ -53,28 +53,28 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_event); //Layout verknüpfen
-        btnFinalAddEvent = (Button) findViewById(R.id.btnFinalAddEvent);
-        btnDiscard = (Button) findViewById(R.id.btnDiscard);
-        txtUhrzeit = (Button) findViewById(R.id.txtZeit);
+        btnFinalAddEvent = (Button) findViewById(R.id.btnFinalAddEvent); //Button mit Variable verknüpfen
+        btnDiscard = (Button) findViewById(R.id.btnDiscard); //Button mit Variable verknüpfen
+        txtUhrzeit = (Button) findViewById(R.id.txtZeit); //Button mit Variable verknüpfen
         txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow);
-        txtDatum = (Button) findViewById(R.id.txtDatum);
-        txtDatumShow = (TextView) findViewById(R.id.txtDatumShow);
-       // txtName = (TextView) findViewById(R.id.txtName);
-        etxtName = (EditText) findViewById(R.id.txtName);
+        txtDatum = (Button) findViewById(R.id.txtDatum); //Button mit Variable verknüpfen
+        txtDatumShow = (TextView) findViewById(R.id.txtDatumShow);//TextView mit Variable verknüpfen
+       // txtName = (TextView) findViewById(R.id.txtName);//TextView mit Variable verknüpfen
+        etxtName = (EditText) findViewById(R.id.txtName); //EditText mit Variable verknüpfen
 
         //Ereignis hinzufügen geklickt
         btnFinalAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (etxtName.length() == 0) {
-                    IsNull("Namens");
+                if (etxtName.length() == 0) { //Wenn Das Ereignis keinen Namen hat...
+                    IsNull("Namens"); //...Operation IsNull aufrufen
                 } else {
-                    if (txtDatumShow.length() == 5){
-                        IsNull("Datums");
+                    if (txtDatumShow.length() == 5){ //Wenn Das Ereignis kein Datum hat...
+                        IsNull("Datums"); //...Operation IsNull aufrufen
                     } else {
-                        if (txtUhrzeitShow.length() == 7) {
-                            IsNull("Uhrzeit");
+                        if (txtUhrzeitShow.length() == 7) { //Wenn Das Ereignis keine Uhrzeit hat...
+                            IsNull("Uhrzeit"); //...Operation IsNull aufrufen
                         } else {
                             save();
                             AddEventActivity.super.onBackPressed();
@@ -88,8 +88,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         btnDiscard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                AddEventActivity.super.onBackPressed();
+                AddEventActivity.super.onBackPressed(); //Zurücktaste
             }
         });
 
@@ -97,8 +96,8 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         txtUhrzeit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.support.v4.app.DialogFragment timePicker = new TimePickerFragment();
-                timePicker.show(getSupportFragmentManager(), "time picker");
+                android.support.v4.app.DialogFragment timePicker = new TimePickerFragment(); //selbsterklärend
+                timePicker.show(getSupportFragmentManager(), "time picker"); //selbsterklärend
 
             }
         });
@@ -107,8 +106,8 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         txtDatum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                android.support.v4.app.DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
+                android.support.v4.app.DialogFragment datePicker = new DatePickerFragment(); //selbsterklärend
+                datePicker.show(getSupportFragmentManager(), "date picker"); //selbsterklärend
             }
         });
 
@@ -117,7 +116,8 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
     @Override
     public void onTimeSet(TimePicker timePicker, int currentHour, int currentMinute) {
         TextView txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow);
-        if(currentHour<10) {        //Für 02:02 statt 2:2 sorgen
+        //Für 02:02 statt 2:2 sorgen
+        if(currentHour<10) {
             if(currentMinute<10) {
                 txtUhrzeitShow.setText("0" + currentHour + ":0" + currentMinute);
             } else {

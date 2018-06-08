@@ -28,10 +28,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //Layout verknüpfen
-        btnAddEvent = (ImageButton) findViewById(R.id.btnAddEvent);
-        btnGoToMainEvent = (Button) findViewById(R.id.btnGoToMainEvent);
-        btnAddSharedEvent = (ImageButton) findViewById(R.id.btnAddSharedEvent);
-        btnAdd = (ImageButton) findViewById(R.id.btnAdd);
+        btnAddEvent = (ImageButton) findViewById(R.id.btnAddEvent); //Button mit Variable verknüpfen
+        btnGoToMainEvent = (Button) findViewById(R.id.btnGoToMainEvent); //Button mit Variable verknüpfen
+        btnAddSharedEvent = (ImageButton) findViewById(R.id.btnAddSharedEvent); //Button mit Variable verknüpfen
+        btnAdd = (ImageButton) findViewById(R.id.btnAdd); //Button mit Variable verknüpfen
 
 
         //Ereignis hinzufügen geklickt
@@ -48,22 +48,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(visible==false){
-                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_in_right);
-                    Animation animation2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_left);
-                    btnAddEvent.setVisibility(View.VISIBLE);
-                    btnAddSharedEvent.setVisibility(View.VISIBLE);
-                    btnAddEvent.startAnimation(animation);
-                    btnAddSharedEvent.startAnimation(animation);
-                    btnAdd.startAnimation(animation2);
+                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_in_right); //animation setzen
+                    Animation animation2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_left); //animation setzen
+                    btnAddEvent.setVisibility(View.VISIBLE); //Sichtbarkeit des Buttons ändern
+                    btnAddSharedEvent.setVisibility(View.VISIBLE); //Sichtbarkeit des Buttons ändern
+                    btnAddEvent.startAnimation(animation); //animation starten
+                    btnAddSharedEvent.startAnimation(animation); //animation starten
+                    btnAdd.startAnimation(animation2); //animation starten
                     visible = true;
                 } else {
-                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_out_right);
-                    Animation animation2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_right);
-                    btnAddEvent.setVisibility(View.GONE);
-                    btnAddSharedEvent.setVisibility(View.GONE);
-                    btnAddEvent.startAnimation(animation);
-                    btnAddSharedEvent.startAnimation(animation);
-                    btnAdd.startAnimation(animation2);
+                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_out_right); //animation setzen
+                    Animation animation2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_right); //animation setzen
+                    btnAddEvent.setVisibility(View.GONE); //Sichtbarkeit des Buttons ändern
+                    btnAddSharedEvent.setVisibility(View.GONE); //Sichtbarkeit des Buttons ändern
+                    btnAddEvent.startAnimation(animation); //animation starten
+                    btnAddSharedEvent.startAnimation(animation); //animation starten
+                    btnAdd.startAnimation(animation2); //animation starten
                     visible = false;
                 }
 
@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
         btnGoToMainEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MainEventActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right_medium, R.anim.slide_out_left_medium);
+                Intent intent = new Intent(MainActivity.this, MainEventActivity.class); //Activity auswählen
+                startActivity(intent); //Activity starten
+                overridePendingTransition(R.anim.slide_in_right_medium, R.anim.slide_out_left_medium); //animation setzen
             }
         });
 
@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
         btnAddSharedEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddSharedEventActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, AddSharedEventActivity.class);  //Activity auswählen
+                startActivity(intent); //Activity starten
             }
         });
 

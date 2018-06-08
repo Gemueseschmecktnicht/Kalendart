@@ -21,23 +21,23 @@ public class MainEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_event); //Layout verknüpfen
 
-        btnGoToMain = (Button) findViewById(R.id.btnGoToMain);
-        txtEvent = (TextView) findViewById(R.id.txtEvent);
+        btnGoToMain = (Button) findViewById(R.id.btnGoToMain); //Button mit Variable verknüpfen
+        txtEvent = (TextView) findViewById(R.id.txtEvent); //TextView mit Variable verknüpfen
 
 
         //Zur Kalenderansicht geklickt
         btnGoToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainEventActivity.super.onBackPressed(); //Zurücktaste
+                MainEventActivity.super.onBackPressed(); //Zurücktaste / schnellster und einfachster Weg ;)
             }
         });
     }
 
     @Override
     public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.slide_in_left_medium, R.anim.slide_out_right_medium);
+        super.finish(); //Activity beenden
+        overridePendingTransition(R.anim.slide_in_left_medium, R.anim.slide_out_right_medium); //animation festlegen
     }
 
 
