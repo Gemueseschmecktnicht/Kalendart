@@ -48,18 +48,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(visible==false){
-                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.show);
+                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_in_right);
+                    Animation animation2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_left);
                     btnAddEvent.setVisibility(View.VISIBLE);
                     btnAddSharedEvent.setVisibility(View.VISIBLE);
                     btnAddEvent.startAnimation(animation);
                     btnAddSharedEvent.startAnimation(animation);
+                    btnAdd.startAnimation(animation2);
                     visible = true;
                 } else {
-                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.hide);
+                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_out_right);
+                    Animation animation2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_right);
                     btnAddEvent.setVisibility(View.GONE);
                     btnAddSharedEvent.setVisibility(View.GONE);
                     btnAddEvent.startAnimation(animation);
                     btnAddSharedEvent.startAnimation(animation);
+                    btnAdd.startAnimation(animation2);
                     visible = false;
                 }
 

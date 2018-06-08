@@ -109,6 +109,16 @@
             android:text="Uhrzeit"
             android:textSize="18sp" />
 
+        <CheckBox
+            android:id="@+id/yearly"
+            android:layout_width="346dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_marginTop="221dp"
+            android:text="Jährliches Ereignis (z.B. Geburtstag)"
+            android:textSize="15sp" />
+
     </RelativeLayout>
 0
 </android.support.constraint.ConstraintLayout>

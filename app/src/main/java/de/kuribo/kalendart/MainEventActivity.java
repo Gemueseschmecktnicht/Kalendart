@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainEventActivity extends AppCompatActivity {
 
@@ -12,7 +13,7 @@ public class MainEventActivity extends AppCompatActivity {
     private static final String TAG = "MainEventActivity";
 
     private Button btnGoToMain;
-
+    private TextView txtEvent;
 
     //CODE
     @Override
@@ -21,6 +22,8 @@ public class MainEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_event); //Layout verknüpfen
 
         btnGoToMain = (Button) findViewById(R.id.btnGoToMain);
+        txtEvent = (TextView) findViewById(R.id.txtEvent);
+
 
         //Zur Kalenderansicht geklickt
         btnGoToMain.setOnClickListener(new View.OnClickListener() {
@@ -30,4 +33,7 @@ public class MainEventActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 }
