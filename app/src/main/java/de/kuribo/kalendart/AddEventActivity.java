@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -53,14 +52,14 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.addevent_layout); //Layout verknüpfen
+        setContentView(R.layout.add_event); //Layout verknüpfen
         btnFinalAddEvent = (Button) findViewById(R.id.btnFinalAddEvent);
         btnDiscard = (Button) findViewById(R.id.btnDiscard);
         txtUhrzeit = (Button) findViewById(R.id.txtZeit);
         txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow);
         txtDatum = (Button) findViewById(R.id.txtDatum);
         txtDatumShow = (TextView) findViewById(R.id.txtDatumShow);
-        txtName = (TextView) findViewById(R.id.txtName);
+       // txtName = (TextView) findViewById(R.id.txtName);
         etxtName = (EditText) findViewById(R.id.txtName);
 
         //Ereignis hinzufügen geklickt
@@ -162,7 +161,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
 
     //Methode zum Speichern
     public void save(){
-        String text0 = txtName.getText().toString();
+        String text0 = etxtName.getText().toString();
         FileOutputStream fos = null;
         try {
             fos = openFileOutput(Eventname, MODE_PRIVATE);

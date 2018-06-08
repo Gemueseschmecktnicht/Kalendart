@@ -68,11 +68,11 @@
         <Button
             android:id="@+id/btnGoToMainEvent"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="302dp"
+            android:layout_width="wrap_content"
             android:layout_height="37dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="221dp"
+            android:layout_marginBottom="26dp"
             android:text="Zur Ereignisansicht"
             android:textColor="@android:color/darker_gray"
             android:textSize="16sp" />

@@ -34,6 +34,11 @@ public class MainEventActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left_medium, R.anim.slide_out_right_medium);
+    }
 
 
 }
