@@ -1,9 +1,13 @@
 package de.kuribo.kalendart;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -20,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnGoToMainEvent;
     private ImageButton btnAdd;
     private boolean visible = false;
-
+   // private FloatingActionButton fab;
 
 
     //CODE
@@ -91,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 }
 /*ALLE BENUTZTEN QUELLEN
 https://developer.android.com/reference/android/widget/Button (10.05.2018)
