@@ -5,6 +5,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
+        <ImageButton
+            android:id="@+id/btnFinalAddSharedEvent"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignEnd="@+id/txtZeit"
+            android:layout_alignTop="@+id/btnDiscard"
+            android:src="@drawable/ic_check"
+            android:text="Ereignis Hinzufügen"
+            android:textColor="@color/colorPrimary" />
+
+        <ImageButton
+            android:id="@+id/btnDiscard"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="18dp"
+            android:layout_marginStart="13dp"
+            android:src="@drawable/ic_cancel"
+            android:text="Ereignis Verwerfen"
+            android:textColor="@android:color/holo_red_light" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="353dp"
@@ -61,28 +85,6 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Beschreibung" />
-
-        <Button
-            android:id="@+id/btnDiscard"
-            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-            android:layout_width="165dp"
-            android:layout_height="83dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="18dp"
-            android:layout_marginStart="13dp"
-            android:text="Ereignis Verwerfen"
-            android:textColor="@android:color/holo_red_light" />
-
-        <Button
-            android:id="@+id/btnFinalAddSharedEvent"
-            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-            android:layout_width="165dp"
-            android:layout_height="83dp"
-            android:layout_alignEnd="@+id/txtZeit"
-            android:layout_alignTop="@+id/btnDiscard"
-            android:text="Ereignis Teilen mit..."
-            android:textColor="@color/colorPrimary" />
 
         <Button
             android:id="@+id/btnAddParameter"

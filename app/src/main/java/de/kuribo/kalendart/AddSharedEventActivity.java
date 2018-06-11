@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -23,13 +24,12 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
     //ATTRIBUTE
     private static final String TAG = "AddSharedEventActivity"; //TAG
 
-    private Button btnDiscard;
-    private Button btnFinalAddSharedEvent;
+    private ImageButton btnDiscard;
+    private ImageButton btnFinalAddSharedEvent;
     Button txtUhrzeit;
     Button txtDatum;
     TextView txtUhrzeitShow;
     TextView txtDatumShow;
-    TextView txtName;
     EditText etxtName;
 
 
@@ -38,13 +38,12 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_shared_event); //Layout verknüpfen
-        btnDiscard = (Button) findViewById(R.id.btnDiscard); //Button mit Variable verknüpfen
-        btnFinalAddSharedEvent = (Button) findViewById(R.id.btnFinalAddSharedEvent); //Button mit Variable verknüpfen
+        btnDiscard = (ImageButton) findViewById(R.id.btnDiscard); //Button mit Variable verknüpfen
+        btnFinalAddSharedEvent = (ImageButton) findViewById(R.id.btnFinalAddSharedEvent); //Button mit Variable verknüpfen
         txtUhrzeit = (Button) findViewById(R.id.txtZeit); //Button mit Variable verknüpfen
         txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow); //TextView mit Variable verknüpfen
         txtDatum = (Button) findViewById(R.id.txtDatum); //Button mit Variable verknüpfen
         txtDatumShow = (TextView) findViewById(R.id.txtDatumShow); //TextView mit Variable verknüpfen
-        txtName = (TextView) findViewById(R.id.txtName); //TextView mit Variable verknüpfen
         etxtName = (EditText) findViewById(R.id.txtName); //EditText mit Variable verknüpfen
 
         //Ereignis Teilen Mit... geklickt
@@ -63,7 +62,7 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
                         } else {
                             Intent intent = new Intent(Intent.ACTION_SEND);
                             intent.setType("text/plain");
-                            String shareBody = "http://kalendart.com/event/name=" +txtName +"&datum=" +txtDatum +"&Uhrzeit=" +txtUhrzeit +"versionalpha/"; //Link als String verpacken
+                            String shareBody = "http://kalendart.com/event/name=" +etxtName +"&datum=" +txtDatum +"&Uhrzeit=" +txtUhrzeit +"versionalpha/"; //Link als String verpacken
                             String shareSub = "Subject";
                             intent.putExtra(Intent.EXTRA_SUBJECT, shareBody);
                             intent.putExtra(Intent.EXTRA_TEXT, shareBody);

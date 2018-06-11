@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -29,19 +30,18 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
     //ATTRIBUTE
     private static final String TAG = "AddEventActivity"; //TAG
 
-    private static final String Eventname = "Termin.txt";
-    private Button btnFinalAddEvent;
-    public String datum = "Nicht definiert";
-    public String uhrzeit = "Nicht definiert";
-    public String name = "Nicht definiert";
-    public String beschreibung = "Nicht definiert";
-    TextView txtName;
+    private static final String Eventname = "Terminname.txt";
+    private static final String Eventdatum = "Termindatum.txt";
+    private static final String Eventuhrzeit = "Terminzeit.txt";
+    private static final String Eventbeschreibung = "Terminbeschreibung.txt";
+    private ImageButton btnFinalAddEvent;
     TextView txtUhrzeitShow;
     TextView txtDatumShow;
     EditText etxtName;
+    EditText etxtBeschreibung;
     Button txtDatum;
     Button txtUhrzeit;
-    private Button btnDiscard;
+    private ImageButton btnDiscard;
     int hour;
     Calendar calendar;
     int minute;
@@ -53,14 +53,14 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_event); //Layout verknüpfen
-        btnFinalAddEvent = (Button) findViewById(R.id.btnFinalAddEvent); //Button mit Variable verknüpfen
-        btnDiscard = (Button) findViewById(R.id.btnDiscard); //Button mit Variable verknüpfen
+        btnFinalAddEvent = (ImageButton) findViewById(R.id.btnFinalAddEvent); //Button mit Variable verknüpfen
+        btnDiscard = (ImageButton) findViewById(R.id.btnDiscard); //Button mit Variable verknüpfen
         txtUhrzeit = (Button) findViewById(R.id.txtZeit); //Button mit Variable verknüpfen
         txtUhrzeitShow = (TextView) findViewById(R.id.txtUhrzeitShow);
         txtDatum = (Button) findViewById(R.id.txtDatum); //Button mit Variable verknüpfen
         txtDatumShow = (TextView) findViewById(R.id.txtDatumShow);//TextView mit Variable verknüpfen
-       // txtName = (TextView) findViewById(R.id.txtName);//TextView mit Variable verknüpfen
-        etxtName = (EditText) findViewById(R.id.txtName); //EditText mit Variable verknüpfen
+        etxtName = (EditText) findViewById(R.id.etxtName); //EditText mit Variable verknüpfen
+        etxtBeschreibung = (EditText) findViewById(R.id.etxtBeschreibung);
 
         //Ereignis hinzufügen geklickt
         btnFinalAddEvent.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +76,9 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
                         if (txtUhrzeitShow.length() == 7) { //Wenn Das Ereignis keine Uhrzeit hat...
                             IsNull("Uhrzeit"); //...Operation IsNull aufrufen
                         } else {
-                            save();
-                            AddEventActivity.super.onBackPressed();
+                            save(Eventname, etxtName);
+                            save(Eventbeschreibung, etxtBeschreibung);
+                           // AddEventActivity.super.onBackPressed();
                         }
                     }
                 }
@@ -88,7 +89,9 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         btnDiscard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddEventActivity.super.onBackPressed(); //Zurücktaste
+                load(Eventname, etxtName);
+                load(Eventbeschreibung, etxtBeschreibung);
+                //AddEventActivity.super.onBackPressed(); //Zurücktaste
             }
         });
 
@@ -160,14 +163,14 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
     }
 
     //Methode zum Speichern
-    public void save(){
-        String text0 = etxtName.getText().toString();
+    public void save(String pEvent, EditText pTxt){
+        String text0 = pTxt.getText().toString();
         FileOutputStream fos = null;
         try {
-            fos = openFileOutput(Eventname, MODE_PRIVATE);
+            fos = openFileOutput(pEvent, MODE_PRIVATE);
             fos.write(text0.getBytes());
 
-            Toast msg = Toast.makeText(getBaseContext(), "File " +getFilesDir() +"/" +Eventname +" angelegt", Toast.LENGTH_LONG);
+            Toast msg = Toast.makeText(getBaseContext(), "File " +getFilesDir() +"/" +pEvent +" angelegt", Toast.LENGTH_LONG);
             msg.show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -185,11 +188,11 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
     }
 
     //Methode zum Laden
-    public void load(){
+    public void load(String pEvent, EditText pTxt){
         FileInputStream fis = null;
 
         try {
-            fis = openFileInput(Eventname);
+            fis = openFileInput(pEvent);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();
@@ -199,7 +202,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
                 sb.append(text).append("\n");
             }
 
-            txtName.setText(sb.toString());
+            pTxt.setText(sb.toString());
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -216,36 +219,18 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         }
     }
 
+  /*  //testet ob Ereignisname drin steht
+    public void Nametest(){
+        if(etxtName.getText().toString() == "Ereignisname"){
+            etxtName.getText().clear();
+        }
+    }
+    //testet ob Beschreibung drin steht
+    public void Beschreibungtest(){
+        if(etxtBeschreibung.getText().toString() == "Beschreibung"){
+            etxtBeschreibung.getText().clear();
+        }
+    }*/
     //GETTER + SETTER
-    public String getName(){
-        return this.name;
-    }
 
-    public String getDatum(){
-        return this.datum;
-    }
-
-    public String getUhrzeit(){
-        return this.uhrzeit;
-    }
-
-    public String getBeschreibung(){
-        return this.beschreibung;
-    }
-
-    public void setName(String pName){
-        this.name = pName;
-    }
-
-    public void setDatum(String pDatum){
-        this.datum = pDatum;
-    }
-
-    public void setUhrzeit(String pUhrzeit){
-        this.uhrzeit = pUhrzeit;
-    }
-
-    public void setBeschreibung(String pBeschreibung){
-        this.beschreibung = pBeschreibung;
-    }
 }
