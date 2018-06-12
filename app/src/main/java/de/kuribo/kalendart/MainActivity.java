@@ -60,15 +60,17 @@ public class MainActivity extends AppCompatActivity {
                     btnAddSharedEvent.startAnimation(animation); //animation starten
                     btnAdd.startAnimation(animation2); //animation starten
                     visible = true;
+
                 } else {
                     Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_out_right); //animation setzen
                     Animation animation2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_right); //animation setzen
-                    btnAddEvent.setVisibility(View.GONE); //Sichtbarkeit des Buttons ändern
-                    btnAddSharedEvent.setVisibility(View.GONE); //Sichtbarkeit des Buttons ändern
+                    btnAddEvent.setVisibility(View.INVISIBLE); //Sichtbarkeit des Buttons ändern
+                    btnAddSharedEvent.setVisibility(View.INVISIBLE); //Sichtbarkeit des Buttons ändern
                     btnAddEvent.startAnimation(animation); //animation starten
                     btnAddSharedEvent.startAnimation(animation); //animation starten
                     btnAdd.startAnimation(animation2); //animation starten
                     visible = false;
+
                 }
 
 
