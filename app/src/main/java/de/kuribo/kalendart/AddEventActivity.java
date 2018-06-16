@@ -21,8 +21,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Calendar;
 import static android.app.PendingIntent.getActivity;
+
 
 public class AddEventActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
 
@@ -30,7 +32,9 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
     //ATTRIBUTE
     private static final String TAG = "AddEventActivity"; //TAG
 
-    private static final String Eventname = "Terminname.txt";
+    private MainEventActivity mae;
+
+    public static final String Eventname = "Terminname.txt";
     private static final String Eventdatum = "Termindatum.txt";
     private static final String Eventuhrzeit = "Terminzeit.txt";
     private static final String Eventbeschreibung = "Terminbeschreibung.txt";
@@ -62,6 +66,12 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         etxtName = (EditText) findViewById(R.id.etxtName); //EditText mit Variable verknüpfen
         etxtBeschreibung = (EditText) findViewById(R.id.etxtBeschreibung);
 
+
+
+
+
+
+
         //Ereignis hinzufügen geklickt
         btnFinalAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +88,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
                         } else {
                             save(Eventname, etxtName);
                             save(Eventbeschreibung, etxtBeschreibung);
+                          //  mae.CreateEvent(Eventname);
                            // AddEventActivity.super.onBackPressed();
                         }
                     }

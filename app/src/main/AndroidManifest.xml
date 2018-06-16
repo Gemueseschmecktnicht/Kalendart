@@ -25,6 +25,10 @@
         <activity android:name=".AddEventActivity"></activity>
         <activity android:name=".MainEventActivity"></activity>
         <activity android:name=".AddSharedEventActivity"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

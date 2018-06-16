@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     //ATTRIBUTE
     private static final String TAG = "MainActivity"; //TAG boiis
 
+    public static String Eventname = "Terminname.txt";
+
     private ImageButton btnAddEvent;
     private ImageButton btnAddSharedEvent;
     private Button btnGoToMainEvent;
@@ -36,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         btnGoToMainEvent = (Button) findViewById(R.id.btnGoToMainEvent); //Button mit Variable verknüpfen
         btnAddSharedEvent = (ImageButton) findViewById(R.id.btnAddSharedEvent); //Button mit Variable verknüpfen
         btnAdd = (ImageButton) findViewById(R.id.btnAdd); //Button mit Variable verknüpfen
-
 
         //Ereignis hinzufügen geklickt
         btnAddEvent.setOnClickListener(new View.OnClickListener() {
