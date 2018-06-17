@@ -1,13 +1,9 @@
 package de.kuribo.kalendart;
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -33,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); //Layout verknüpfen
+        setContentView(R.layout.main); //Layout verknüpfen
         btnAddEvent = (ImageButton) findViewById(R.id.btnAddEvent); //Button mit Variable verknüpfen
         btnGoToMainEvent = (Button) findViewById(R.id.btnGoToMainEvent); //Button mit Variable verknüpfen
         btnAddSharedEvent = (ImageButton) findViewById(R.id.btnAddSharedEvent); //Button mit Variable verknüpfen

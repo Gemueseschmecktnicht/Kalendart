@@ -23,7 +23,7 @@ public class MainEventActivity extends AppCompatActivity {
     //ATTRIBUTE
     private static final String TAG = "MainEventActivity";
 
-   // private AddEventActivity aea;
+    private ArrayList<Event> mEventListe;
     private TextView ueberschrift0; //später in Arrays umwandeln
     private TextView datum0;
     private TextView uhrzeit0;
@@ -35,31 +35,46 @@ public class MainEventActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutmanager;
 
-
-
-
-
+    private Button btnInsert;
+    private Button btnRemove;
+    private EditText etInsert;
+    private EditText etRemove;
 
     //CODE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_event); //Layout verknüpfen
+        setContentView(R.layout.main_event); //Layout verknüpfen
+
+        createEventListe();
+        buildRecyclerView();
 
         btnGoToMain = (Button) findViewById(R.id.btnGoToMain); //Button mit Variable verknüpfen
+        btnInsert = (Button) findViewById(R.id.btnInsert);
+        btnRemove = (Button) findViewById(R.id.btnRemove);
+        etInsert = (EditText) findViewById(R.id.etInsert);
+        etRemove = (EditText) findViewById(R.id.etRemove);
 
-        ArrayList<Event> eventliste = new ArrayList<>();
-        eventliste.add(new Event("Line1", "Line2", "Line3", "Line4"));
-        eventliste.add(new Event("Line1", "Line2", "Line3", "Line4"));
-        eventliste.add(new Event("Line1", "Line2", "Line3", "Line4"));
+        btnInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = Integer.parseInt(etInsert.getText().toString());
+                InsertEvent(position);
+            }
+        });
 
-        mRecyclerview = findViewById(R.id.recyclerview);
-        mRecyclerview.setHasFixedSize(true);
-        mLayoutmanager = new LinearLayoutManager(this);
-        mAdapter = new EventAdapter(eventliste);
+        btnRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = Integer.parseInt(etRemove.getText().toString());
+                RemoveEvent(position);
+            }
+        });
 
-        mRecyclerview.setLayoutManager(mLayoutmanager);
-        mRecyclerview.setAdapter(mAdapter);
+
+
+
+
 
 
 
@@ -111,5 +126,32 @@ public class MainEventActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void InsertEvent(int pPosition){
+        mEventListe.add(pPosition, new Event("Name", "Datum", "Uhrzeit", "Beschreibung"));
+        mAdapter.notifyItemInserted(pPosition);
+    }
+
+    public void RemoveEvent(int pPosition){
+        mEventListe.remove(pPosition);
+        mAdapter.notifyItemRemoved(pPosition);
+    }
+
+    public void createEventListe(){
+        mEventListe = new ArrayList<>();
+        mEventListe.add(new Event("Line1", "Line2", "Line3", "Line4"));
+        mEventListe.add(new Event("Line1", "Line2", "Line3", "Line4"));
+        mEventListe.add(new Event("Line1", "Line2", "Line3", "Line4"));
+    }
+
+    public void buildRecyclerView(){
+        mRecyclerview = findViewById(R.id.recyclerview);
+        mRecyclerview.setHasFixedSize(true);
+        mLayoutmanager = new LinearLayoutManager(this);
+        mAdapter = new EventAdapter(mEventListe);
+
+        mRecyclerview.setLayoutManager(mLayoutmanager);
+        mRecyclerview.setAdapter(mAdapter);
     }
 }
