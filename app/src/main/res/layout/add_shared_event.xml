@@ -43,6 +43,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:hint="Ereignisname"
             android:id="@+id/txtName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,8 +51,7 @@
             android:layout_alignStart="@+id/textView3"
             android:layout_marginBottom="-95dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Ereignisname" />
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/txtDatum"
@@ -76,6 +76,7 @@
             android:inputType="none" />
 
         <EditText
+            android:hint="Beschreibung"
             android:id="@+id/editText4"
             android:layout_width="348dp"
             android:layout_height="wrap_content"
@@ -83,8 +84,7 @@
             android:layout_alignStart="@+id/textView3"
             android:layout_marginTop="154dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Beschreibung" />
+            android:inputType="textPersonName"  />
 
         <Button
             android:id="@+id/btnAddParameter"

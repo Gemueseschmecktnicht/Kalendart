@@ -33,8 +33,8 @@
             android:layout_alignStart="@+id/textView3"
             android:layout_marginBottom="-95dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Ereignisname" />
+            android:hint="Eventname"
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/txtDatum"
@@ -57,6 +57,7 @@
             android:layout_marginEnd="14dp" />
 
         <EditText
+            android:hint="Beschreibung"
             android:id="@+id/etxtBeschreibung"
             android:layout_width="348dp"
             android:layout_height="wrap_content"
@@ -64,8 +65,7 @@
             android:layout_alignStart="@+id/textView3"
             android:layout_marginTop="154dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Beschreibung" />
+            android:inputType="textPersonName" />
 
         <ImageButton
             android:id="@+id/btnDiscard"

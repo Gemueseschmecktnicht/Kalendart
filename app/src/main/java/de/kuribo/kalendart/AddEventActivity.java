@@ -26,13 +26,13 @@ import java.util.Calendar;
 import static android.app.PendingIntent.getActivity;
 
 
-public class AddEventActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
+public class AddEventActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
 
     //ATTRIBUTE
     private static final String TAG = "AddEventActivity"; //TAG
 
-    private MainEventActivity mae;
+   // private MainEventActivity mae;
 
     public static final String Eventname = "Terminname.txt";
     private static final String Eventdatum = "Termindatum.txt";
