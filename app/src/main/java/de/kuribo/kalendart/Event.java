@@ -1,5 +1,7 @@
 package de.kuribo.kalendart;
 
+import android.widget.ImageButton;
+
 import java.io.Serializable;
 public class Event implements Serializable{
 
@@ -15,6 +17,8 @@ public class Event implements Serializable{
         eBeschreibung = pBeschreibung;
 
     }
+
+
 
     //Getter + Setter
     public String geteName(){

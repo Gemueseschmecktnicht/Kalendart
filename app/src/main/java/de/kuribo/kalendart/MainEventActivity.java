@@ -1,6 +1,10 @@
 package de.kuribo.kalendart;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,10 +38,6 @@ public class MainEventActivity extends AppCompatActivity {
     private RecyclerView mRecyclerview;
     private RecyclerView.LayoutManager mLayoutmanager;
 
-    private Button btnInsert;
-    private Button btnRemove;
-    private EditText etInsert;
-    private EditText etRemove;
 
     //CODE
     @Override
@@ -48,26 +48,9 @@ public class MainEventActivity extends AppCompatActivity {
         buildRecyclerView();
 
         btnGoToMain = (Button) findViewById(R.id.btnGoToMain); //Button mit Variable verknüpfen
-        btnInsert = (Button) findViewById(R.id.btnInsert);
-        btnRemove = (Button) findViewById(R.id.btnRemove);
-        etInsert = (EditText) findViewById(R.id.etInsert);
-        etRemove = (EditText) findViewById(R.id.etRemove);
 
-        btnInsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = Integer.parseInt(etInsert.getText().toString());
-                InsertEvent(position);
-            }
-        });
 
-        btnRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = Integer.parseInt(etRemove.getText().toString());
-                RemoveEvent(position);
-            }
-        });
+
 
 
 
@@ -143,5 +126,17 @@ public class MainEventActivity extends AppCompatActivity {
         mLayoutmanager = new LinearLayoutManager(this);
         mRecyclerview.setLayoutManager(mLayoutmanager);
         mRecyclerview.setAdapter(eAdapter);
+
+        eAdapter.SetOnEventDeleteListener(new EventAdapter.OnDeleteClickListener() {
+            @Override
+            public void OnEventDelete(int pPosition) {
+                eAdapter.getEventListe().remove(pPosition);
+                eAdapter.notifyItemRemoved(pPosition);
+                eAdapter.save();
+            }
+        });
     }
+
+
 }
+

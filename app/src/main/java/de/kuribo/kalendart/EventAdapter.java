@@ -4,6 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,6 +22,15 @@ import java.util.ArrayList;
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
 
     private ArrayList<Event> eventListe = new ArrayList<Event>();
+    private OnDeleteClickListener mListener;
+    public interface OnDeleteClickListener {
+        void OnEventDelete(int position);
+    }
+
+    public void SetOnEventDeleteListener(OnDeleteClickListener listener){
+        mListener = listener;
+    }
+
     private Context context;
     public static class EventViewHolder extends RecyclerView.ViewHolder {
 
@@ -26,16 +38,29 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         public TextView datum;
         public TextView uhrzeit;
         public TextView beschriebung;
+        public ImageView btnDelete;
 
 
-        public EventViewHolder(View itemView) {
+        public EventViewHolder(View itemView, final OnDeleteClickListener listener) {
             super(itemView);
 
             name = itemView.findViewById(R.id.tvName);
             datum = itemView.findViewById(R.id.tvDatum);
             uhrzeit = itemView.findViewById(R.id.tvUhrzeit);
             beschriebung = itemView.findViewById(R.id.tvBeschreibung);
+            btnDelete = (ImageView) itemView.findViewById(R.id.btnDelete);
 
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.OnEventDelete(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -47,7 +72,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.event, parent, false);
-        EventViewHolder evh = new EventViewHolder(v);
+        EventViewHolder evh = new EventViewHolder(v, mListener);
         return evh;
     }
 

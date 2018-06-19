@@ -64,10 +64,9 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
                         } else {
                             eAdapter.addEvent(etxtName.getText().toString(), txtDatumShow.getText().toString(), txtUhrzeitShow.getText().toString(), etxtBeschreibung.getText().toString());
                             eAdapter.save();
-                            AddSharedEventActivity.super.onBackPressed();
                             Intent intent = new Intent(Intent.ACTION_SEND);
                             intent.setType("text/plain");
-                            String shareBody = "http://kalendart.com/event/name=" +etxtName +"&datum=" +txtDatum +"&Uhrzeit=" +txtUhrzeit +"versionalpha/"; //Link als String verpacken
+                            String shareBody =  etxtName.getText().toString() +" \n " +txtDatumShow.getText().toString() +"\n" +txtUhrzeitShow.getText().toString() + "\n" +etxtBeschreibung.getText().toString(); //Link als String verpacken
                             String shareSub = "Subject";
                             intent.putExtra(Intent.EXTRA_SUBJECT, shareBody);
                             intent.putExtra(Intent.EXTRA_TEXT, shareBody);
