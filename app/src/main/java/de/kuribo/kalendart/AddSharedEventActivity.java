@@ -23,7 +23,7 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
 
     //ATTRIBUTE
     private static final String TAG = "AddSharedEventActivity"; //TAG
-
+    private EventAdapter eAdapter = null;
     private ImageButton btnDiscard;
     private ImageButton btnFinalAddSharedEvent;
     Button txtUhrzeit;
@@ -31,6 +31,7 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
     TextView txtUhrzeitShow;
     TextView txtDatumShow;
     EditText etxtName;
+    EditText etxtBeschreibung;
 
 
     //CODE
@@ -45,7 +46,8 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
         txtDatum = (Button) findViewById(R.id.txtDatum); //Button mit Variable verknüpfen
         txtDatumShow = (TextView) findViewById(R.id.txtDatumShow); //TextView mit Variable verknüpfen
         etxtName = (EditText) findViewById(R.id.txtName); //EditText mit Variable verknüpfen
-
+        etxtBeschreibung = (EditText) findViewById(R.id.etxtBeschreibung);
+        eAdapter = new EventAdapter(this.getApplicationContext());
         //Ereignis Teilen Mit... geklickt
         btnFinalAddSharedEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +62,9 @@ public class AddSharedEventActivity extends AppCompatActivity implements TimePic
                         if (txtUhrzeitShow.length() == 7) { //Wenn Das Ereignis keine Uhrzeit hat...
                             IsNull("Uhrzeit"); //...Operation IsNull aufrufen
                         } else {
+                            eAdapter.addEvent(etxtName.getText().toString(), txtDatumShow.getText().toString(), txtUhrzeitShow.getText().toString(), etxtBeschreibung.getText().toString());
+                            eAdapter.save();
+                            AddSharedEventActivity.super.onBackPressed();
                             Intent intent = new Intent(Intent.ACTION_SEND);
                             intent.setType("text/plain");
                             String shareBody = "http://kalendart.com/event/name=" +etxtName +"&datum=" +txtDatum +"&Uhrzeit=" +txtUhrzeit +"versionalpha/"; //Link als String verpacken

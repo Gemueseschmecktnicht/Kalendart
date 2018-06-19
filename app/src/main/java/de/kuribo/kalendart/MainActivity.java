@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
 
     //ATTRIBUTE
     private static final String TAG = "MainActivity"; //TAG boiis
-
     public static String Eventname = "Terminname.txt";
 
     private ImageButton btnAddEvent;

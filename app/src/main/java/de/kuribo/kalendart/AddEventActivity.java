@@ -31,7 +31,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
 
     //ATTRIBUTE
     private static final String TAG = "AddEventActivity"; //TAG
-
+    private EventAdapter eAdapter = null;
    // private MainEventActivity mae;
 
     public static final String Eventname = "Terminname.txt";
@@ -65,7 +65,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         txtDatumShow = (TextView) findViewById(R.id.txtDatumShow);//TextView mit Variable verknüpfen
         etxtName = (EditText) findViewById(R.id.etxtName); //EditText mit Variable verknüpfen
         etxtBeschreibung = (EditText) findViewById(R.id.etxtBeschreibung);
-
+        eAdapter = new EventAdapter(this.getApplicationContext());
 
 
 
@@ -86,10 +86,9 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
                         if (txtUhrzeitShow.length() == 7) { //Wenn Das Ereignis keine Uhrzeit hat...
                             IsNull("Uhrzeit"); //...Operation IsNull aufrufen
                         } else {
-                            save(Eventname, etxtName);
-                            save(Eventbeschreibung, etxtBeschreibung);
-                          //  mae.CreateEvent(Eventname);
-                           // AddEventActivity.super.onBackPressed();
+                            eAdapter.addEvent(etxtName.getText().toString(), txtDatumShow.getText().toString(), txtUhrzeitShow.getText().toString(), etxtBeschreibung.getText().toString());
+                            eAdapter.save();
+                           AddEventActivity.super.onBackPressed();
                         }
                     }
                 }
@@ -100,9 +99,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         btnDiscard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                load(Eventname, etxtName);
-                load(Eventbeschreibung, etxtBeschreibung);
-                //AddEventActivity.super.onBackPressed(); //Zurücktaste
+                AddEventActivity.super.onBackPressed(); //Zurücktaste
             }
         });
 
@@ -173,6 +170,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         alertDialog.show();
     }
 
+    /*
     //Methode zum Speichern
     public void save(String pEvent, EditText pTxt){
         String text0 = pTxt.getText().toString();
@@ -229,19 +227,5 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
             }
         }
     }
-
-  /*  //testet ob Ereignisname drin steht
-    public void Nametest(){
-        if(etxtName.getText().toString() == "Ereignisname"){
-            etxtName.getText().clear();
-        }
-    }
-    //testet ob Beschreibung drin steht
-    public void Beschreibungtest(){
-        if(etxtBeschreibung.getText().toString() == "Beschreibung"){
-            etxtBeschreibung.getText().clear();
-        }
-    }*/
-    //GETTER + SETTER
-
+    */
 }

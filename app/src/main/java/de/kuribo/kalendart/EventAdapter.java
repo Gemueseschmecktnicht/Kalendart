@@ -5,13 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import android.content.Context;
 
 import java.util.ArrayList;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
 
-    private ArrayList<Event> eventListe;
-
+    private ArrayList<Event> eventListe = new ArrayList<Event>();
+    private Context context;
     public static class EventViewHolder extends RecyclerView.ViewHolder {
 
         public TextView name;
@@ -28,12 +36,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             uhrzeit = itemView.findViewById(R.id.tvUhrzeit);
             beschriebung = itemView.findViewById(R.id.tvBeschreibung);
 
-
         }
     }
 
-    public EventAdapter(ArrayList<Event> pEventListe){
-        eventListe = pEventListe;
+    public EventAdapter(Context pContext){
+        context = pContext;
+        load();
     }
 
     @Override
@@ -56,5 +64,63 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     @Override
     public int getItemCount() {
         return eventListe.size();
+    }
+
+    public void save() {
+        ObjectOutputStream outputStream = null;
+        File path = context.getFilesDir();
+        String file_name = "event_data.txt";
+        File tasks_file = new File(path, file_name);
+        try {
+            outputStream = new ObjectOutputStream(new FileOutputStream(tasks_file));
+
+            for ( Event e : eventListe ) {
+                outputStream.writeObject(e);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Gespeichert");
+    }
+
+    public void load(){
+        ObjectInputStream inputStream = null;
+        File path = context.getFilesDir();
+        String file_name = "event_data.txt";
+        File tasks_file = new File(path, file_name);
+        try {
+            inputStream = new ObjectInputStream(new FileInputStream(tasks_file));
+            boolean b = true;
+            while (b) {
+                Event e = (Event) inputStream.readObject();
+                if (e != null) {
+                    eventListe.add(e);
+                } else {
+                    b = false;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Geladen");
+    }
+
+    public void addEvent(String pName, String pDatum, String pUhrzeit, String pBeschreibung){
+        eventListe.add(new Event(pName, pDatum, pUhrzeit, pBeschreibung));
+    }
+
+    public ArrayList<Event> getEventListe() {
+        return eventListe;
+    }
+
+    public void setEventListe(ArrayList<Event> eventListe) {
+        this.eventListe = eventListe;
     }
 }

@@ -23,16 +23,15 @@ public class MainEventActivity extends AppCompatActivity {
     //ATTRIBUTE
     private static final String TAG = "MainEventActivity";
 
-    private ArrayList<Event> mEventListe;
     private TextView ueberschrift0; //später in Arrays umwandeln
     private TextView datum0;
     private TextView uhrzeit0;
     private TextView beschreibung0;
     private Button btnGoToMain;
     private TextView txtEvent;
+    private EventAdapter eAdapter = null;
 
     private RecyclerView mRecyclerview;
-    private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutmanager;
 
     private Button btnInsert;
@@ -45,8 +44,7 @@ public class MainEventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_event); //Layout verknüpfen
-
-        createEventListe();
+        eAdapter = new EventAdapter(this.getApplicationContext());
         buildRecyclerView();
 
         btnGoToMain = (Button) findViewById(R.id.btnGoToMain); //Button mit Variable verknüpfen
@@ -73,13 +71,6 @@ public class MainEventActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
         //Zur Kalenderansicht geklickt
         btnGoToMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +86,7 @@ public class MainEventActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_left_medium, R.anim.slide_out_right_medium); //animation festlegen
     }
 
-
+    /*
     //Methode zum Laden
     public void load(String pEvent, TextView pTxt){
         FileInputStream fis = null;
@@ -126,32 +117,31 @@ public class MainEventActivity extends AppCompatActivity {
                 }
             }
         }
-    }
+    } */
 
     public void InsertEvent(int pPosition){
-        mEventListe.add(pPosition, new Event("Name", "Datum", "Uhrzeit", "Beschreibung"));
-        mAdapter.notifyItemInserted(pPosition);
+        eAdapter.getEventListe().add(pPosition, new Event("Name", "Datum", "Uhrzeit", "Beschreibung"));
+        eAdapter.notifyItemInserted(pPosition);
     }
 
     public void RemoveEvent(int pPosition){
-        mEventListe.remove(pPosition);
-        mAdapter.notifyItemRemoved(pPosition);
+        eAdapter.getEventListe().remove(pPosition);
+        eAdapter.notifyItemRemoved(pPosition);
+        eAdapter.save();
     }
 
     public void createEventListe(){
-        mEventListe = new ArrayList<>();
-        mEventListe.add(new Event("Line1", "Line2", "Line3", "Line4"));
-        mEventListe.add(new Event("Line1", "Line2", "Line3", "Line4"));
-        mEventListe.add(new Event("Line1", "Line2", "Line3", "Line4"));
+        eAdapter.setEventListe(new ArrayList<Event>());
+        eAdapter.getEventListe().add(new Event("Line1", "Line2", "Line3", "Line4"));
+        eAdapter.getEventListe().add(new Event("Line1", "Line2", "Line3", "Line4"));
+        eAdapter.getEventListe().add(new Event("Line1", "Line2", "Line3", "Line4"));
     }
 
     public void buildRecyclerView(){
         mRecyclerview = findViewById(R.id.recyclerview);
         mRecyclerview.setHasFixedSize(true);
         mLayoutmanager = new LinearLayoutManager(this);
-        mAdapter = new EventAdapter(mEventListe);
-
         mRecyclerview.setLayoutManager(mLayoutmanager);
-        mRecyclerview.setAdapter(mAdapter);
+        mRecyclerview.setAdapter(eAdapter);
     }
 }

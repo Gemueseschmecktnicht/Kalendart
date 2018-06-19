@@ -76,15 +76,15 @@
             android:inputType="none" />
 
         <EditText
-            android:hint="Beschreibung"
-            android:id="@+id/editText4"
+            android:id="@+id/etxtBeschreibung"
             android:layout_width="348dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/textView3"
             android:layout_marginTop="154dp"
             android:ems="10"
-            android:inputType="textPersonName"  />
+            android:hint="Beschreibung"
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/btnAddParameter"

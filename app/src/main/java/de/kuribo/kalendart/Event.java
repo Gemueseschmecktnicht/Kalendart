@@ -1,6 +1,7 @@
 package de.kuribo.kalendart;
 
-public class Event {
+import java.io.Serializable;
+public class Event implements Serializable{
 
     private String eName;
     private String eDatum;
@@ -30,5 +31,21 @@ public class Event {
 
     public String geteBeschreibung(){
         return eBeschreibung;
+    }
+
+    public void seteName(String eName) {
+        this.eName = eName;
+    }
+
+    public void seteDatum(String eDatum) {
+        this.eDatum = eDatum;
+    }
+
+    public void seteUrhzeit(String eUrhzeit) {
+        this.eUrhzeit = eUrhzeit;
+    }
+
+    public void seteBeschreibung(String eBeschreibung) {
+        this.eBeschreibung = eBeschreibung;
     }
 }
